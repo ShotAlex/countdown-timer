@@ -1,5 +1,6 @@
 import React, {useState,useEffect} from "react";
 import './Main.scss';
+import EventName from "../EventName/EventName";
 
 const DAY_MS = 8.64e7;
 const HOUR_MS = 3.6e6;
@@ -56,7 +57,7 @@ const Main = () => {
             <h1 className="main__title">Countdown Timer</h1>
 
             <div className="main-name-event">
-                Input U event and click start
+                <EventName />
             </div>
 
             <div className="main-countdown">
