@@ -1,7 +1,7 @@
-import React, {useState,useEffect} from "react"
-import EventName from "../EventName/EventName"
-import InputDate from "../InputDate/InputDate"
-import './Main.scss'
+import React, {useState,useEffect} from 'react'
+import {useInterval} from "../../hooks/useInterval";
+import EventName from '../EventName/EventName'
+import InputDate from '../InputDate/InputDate'
 import {
     DAY_MS,
     HOUR_MS,
@@ -9,25 +9,28 @@ import {
     SEC_MS,
     INITIAL_STATE
 } from '../../variables/variables.js'
+import './Main.scss'
 
 
 const Main = () => {
     const [timeLeft, setTimeLeft] = useState(INITIAL_STATE)
     const [inputDate, setInputDate] = useState(0)
+    const [timerOn, setTimerOn] = useState(false)
 
     useEffect(() => {
-        setTimeLeft(INITIAL_STATE)
-        const startTimer = setInterval(() => {
-            inputDate !== 0 && getDateDifference()
-            }, 1000)
-
-        return () => clearInterval(startTimer);
+        (inputDate > 0) && setTimerOn(true)
     }, [inputDate])
 
-    const getDateDifference = (inputUserDate) => {
+    useInterval(() => {
+        (inputDate > 0) && getDateDifference()
+    }, timerOn ? 1000 : null);
+
+    const getDateDifference = () => {
         const dateNow = new Date();
         const currencyMilliseconds = inputDate - dateNow.getTime()
-        convertMillisecondsToDayHoursMinSec(currencyMilliseconds)
+        currencyMilliseconds > 0
+            ? convertMillisecondsToDayHoursMinSec(currencyMilliseconds)
+            : setTimerOn(false)
     }
 
     const convertMillisecondsToDayHoursMinSec = (milliseconds) => {
