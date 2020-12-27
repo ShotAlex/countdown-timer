@@ -12,8 +12,33 @@
 
   }
 
-  &-date {
+  &-countdown {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
 
+    &__item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      border-radius: 100%;
+      border: 1px solid #dfdfdf;
+      width: 100px;
+      height: 100px;
+      color: #111;
+      font-size: 40px;
+      line-height: 30px;
+      margin: 10px;
+      padding-top: 10px;
+
+      span {
+        color: #333;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+    }
   }
 
   &-current-date {
