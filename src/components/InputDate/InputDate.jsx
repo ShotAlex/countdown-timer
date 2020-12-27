@@ -1,15 +1,20 @@
 import React, {useState} from 'react'
 import './InputDate.scss'
 
-const InputDate = () => {
+const InputDate = (props) => {
     const [inputDate, setInputDate] = useState('')
 
     const changeInputDate = (e) => {
-        setInputDate(e.target.value)
+        const inputUserDate = e.target.value
+        setInputDate(inputUserDate)
+
+        const inputUserDateInMilliseconds = new Date(inputUserDate).getTime()
+        props.setInputDate(inputUserDateInMilliseconds)
     }
 
-    const getMinInputDate = () => new Date().toISOString()
-
+    const getMinInputDate = () => {
+        return new Date().toISOString().toString().slice(0,16)
+    }
 
     return (
         <div className="event-name input-date">
@@ -17,8 +22,7 @@ const InputDate = () => {
                 type="datetime-local"
                 className="event-name__input"
                 value={inputDate}
-                // min={getMinInputDate()}
-                min='2020-12-25T12:12'
+                min={getMinInputDate()}
                 onChange={changeInputDate}
             />
         </div>
