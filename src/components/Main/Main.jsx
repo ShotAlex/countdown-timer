@@ -16,20 +16,18 @@ const Main = () => {
     const [inputDate, setInputDate] = useState(0)
 
     useEffect(() => {
-        inputDate !== 0 && startTimer()
-    }, [inputDate])
+        setTimeLeft(INITIAL_STATE)
+        const startTimer = setInterval(() => {
+            inputDate !== 0 && getDateDifference()
+            }, 1000)
 
+        return () => clearInterval(startTimer);
+    }, [inputDate])
 
     const getDateDifference = (inputUserDate) => {
         const dateNow = new Date();
         const currencyMilliseconds = inputDate - dateNow.getTime()
         convertMillisecondsToDayHoursMinSec(currencyMilliseconds)
-    }
-
-    const startTimer = () => {
-        setInterval(() => {
-            getDateDifference()
-        }, 1000)
     }
 
     const convertMillisecondsToDayHoursMinSec = (milliseconds) => {
