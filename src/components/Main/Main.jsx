@@ -6,13 +6,15 @@ const HOUR_MS = 3.6e6;
 const MIN_MS = 6e4;
 const SEC_MS = 1e3;
 
+const INITIAL_STATE = {
+    days: undefined,
+    hours: undefined,
+    minutes: undefined,
+    seconds: undefined
+}
+
 const Main = () => {
-    const [timeLeft, setTimeLeft] = useState({
-        days: undefined,
-        hours: undefined,
-        minutes: undefined,
-        seconds: undefined
-    })
+    const [timeLeft, setTimeLeft] = useState(INITIAL_STATE)
 
     useEffect(() => {
         setInterval(() => {
@@ -20,9 +22,17 @@ const Main = () => {
         }, 1000)
     }, [])
 
+    useEffect(() => {
+        let {days, hours, minutes, seconds} = timeLeft
+        if (!days && !hours && !minutes && !seconds && seconds !== undefined) {
+            alert('BINGO')
+            setTimeLeft(INITIAL_STATE)
+        }
+    }, [timeLeft.seconds])
+
     const getDateDifference = () => {
         const dateNow = new Date();
-        const inputDate = new Date(2020,11, 31, 23, 59, 59)
+        const inputDate = new Date(2020,11, 28, 7, 53, 19)
         const currencyMilliseconds = inputDate.getTime() - dateNow.getTime()
         convertMillisecondsToDayHoursMinSec(currencyMilliseconds)
     }
@@ -40,8 +50,6 @@ const Main = () => {
             seconds
         })
     }
-
-
 
     return (
         <div className="main">
