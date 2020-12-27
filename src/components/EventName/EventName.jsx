@@ -1,11 +1,17 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import './EventName.scss'
 
 const EventName = () => {
     const [eventName, setEventName] = useState('')
 
+    useEffect(() => {
+        const currentEventName = localStorage.getItem('event-name')
+        setEventName(currentEventName || '')
+    },[])
+
     const changeEventName = (e) => {
         setEventName(e.target.value)
+        localStorage.setItem('event-name', e.target.value)
     }
 
     return (
