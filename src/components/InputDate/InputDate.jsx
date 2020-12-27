@@ -17,12 +17,18 @@ const InputDate = (props) => {
 
     const getMinInputDate = () => new Date().toISOString().toString().slice(0,16)
 
+    const checkInputTime = (inputUserDate) => inputUserDate > (new Date()).getTime()
+
     const changeInputDate = (e) => {
         const inputUserDate = e.target.value
-        setInputDate(inputUserDate)
-
         const inputUserDateInMilliseconds = new Date(inputUserDate).getTime()
-        props.setInputDate(inputUserDateInMilliseconds)
+
+        if (checkInputTime(inputUserDateInMilliseconds)) {
+            setInputDate(inputUserDate)
+            props.setInputDate(inputUserDateInMilliseconds)
+        } else {
+            alert('Sorry, You can\'t travel back in time yet')
+        }
     }
 
     return (
