@@ -1,8 +1,21 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import './InputDate.scss'
 
 const InputDate = (props) => {
     const [inputDate, setInputDate] = useState('')
+    const [minInputDate, setMinInputDate] = useState('')
+
+    useEffect(() => {
+        const timeNow = new Date()
+        const year = timeNow.getFullYear()
+        const month = timeNow.getMonth() + 1
+        const day = timeNow.getDate()
+
+        setInputDate(`${year}-${month}-${day}T00:00`)
+        setMinInputDate(getMinInputDate())
+    }, [])
+
+    const getMinInputDate = () => new Date().toISOString().toString().slice(0,16)
 
     const changeInputDate = (e) => {
         const inputUserDate = e.target.value
@@ -12,17 +25,13 @@ const InputDate = (props) => {
         props.setInputDate(inputUserDateInMilliseconds)
     }
 
-    const getMinInputDate = () => {
-        return new Date().toISOString().toString().slice(0,16)
-    }
-
     return (
         <div className="event-name input-date">
             <input
                 type="datetime-local"
                 className="event-name__input"
                 value={inputDate}
-                min={getMinInputDate()}
+                min={minInputDate}
                 onChange={changeInputDate}
             />
         </div>
