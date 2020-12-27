@@ -50,14 +50,10 @@ const Main = () => {
         <div className="main">
             <h1 className="main__title">Countdown Timer</h1>
 
-            <div className="main-name-event">
-                <EventName />
-            </div>
-            <div className="main-date">
-                <InputDate
-                    setInputDate={setInputDate}
-                />
-            </div>
+            <EventName />
+            <InputDate
+                setInputDate={setInputDate}
+            />
 
             <div className="main-countdown">
                 <div className="main-countdown__item">

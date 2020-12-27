@@ -21,7 +21,7 @@ const InputDate = (props) => {
             <input
                 type="datetime-local"
                 className="event-name__input"
-                value={inputDate}
+                defaultValue={inputDate}
                 min={getMinInputDate()}
                 onChange={changeInputDate}
             />
