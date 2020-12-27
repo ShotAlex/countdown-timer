@@ -1,41 +1,35 @@
-import React, {useState,useEffect} from "react";
-import './Main.scss';
-import EventName from "../EventName/EventName";
+import React, {useState,useEffect} from "react"
+import EventName from "../EventName/EventName"
+import InputDate from "../InputDate/InputDate"
+import './Main.scss'
+import {
+    DAY_MS,
+    HOUR_MS,
+    MIN_MS,
+    SEC_MS,
+    INITIAL_STATE
+} from '../../variables/variables.js'
 
-const DAY_MS = 8.64e7;
-const HOUR_MS = 3.6e6;
-const MIN_MS = 6e4;
-const SEC_MS = 1e3;
-
-const INITIAL_STATE = {
-    days: undefined,
-    hours: undefined,
-    minutes: undefined,
-    seconds: undefined
-}
 
 const Main = () => {
     const [timeLeft, setTimeLeft] = useState(INITIAL_STATE)
+    const [inputDate, setInputDate] = useState(0)
 
     useEffect(() => {
-        setInterval(() => {
-        getDateDifference()
-        }, 1000)
-    }, [])
+        inputDate !== 0 && startTimer()
+    }, [inputDate])
 
-    useEffect(() => {
-        let {days, hours, minutes, seconds} = timeLeft
-        if (!days && !hours && !minutes && !seconds && seconds !== undefined) {
-            alert('BINGO')
-            setTimeLeft(INITIAL_STATE)
-        }
-    }, [timeLeft.seconds])
 
-    const getDateDifference = () => {
+    const getDateDifference = (inputUserDate) => {
         const dateNow = new Date();
-        const inputDate = new Date(2020,11, 28, 7, 53, 19)
-        const currencyMilliseconds = inputDate.getTime() - dateNow.getTime()
+        const currencyMilliseconds = inputDate - dateNow.getTime()
         convertMillisecondsToDayHoursMinSec(currencyMilliseconds)
+    }
+
+    const startTimer = () => {
+        setInterval(() => {
+            getDateDifference()
+        }, 1000)
     }
 
     const convertMillisecondsToDayHoursMinSec = (milliseconds) => {
@@ -58,6 +52,11 @@ const Main = () => {
 
             <div className="main-name-event">
                 <EventName />
+            </div>
+            <div className="main-date">
+                <InputDate
+                    setInputDate={setInputDate}
+                />
             </div>
 
             <div className="main-countdown">
