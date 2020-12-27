@@ -1,6 +1,7 @@
 import React, {useState,useEffect} from "react";
-import './Main.scss';
 import EventName from "../EventName/EventName";
+import InputDate from "../InputDate/InputDate";
+import './Main.scss';
 
 const DAY_MS = 8.64e7;
 const HOUR_MS = 3.6e6;
@@ -58,6 +59,9 @@ const Main = () => {
 
             <div className="main-name-event">
                 <EventName />
+            </div>
+            <div className="main-date">
+                <InputDate />
             </div>
 
             <div className="main-countdown">
