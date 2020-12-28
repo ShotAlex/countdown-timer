@@ -10,6 +10,7 @@ import {
     INITIAL_STATE
 } from '../../variables/variables.js'
 import './Main.scss'
+import ClearTimer from "../ClearTimer/ClearTimer";
 
 
 const Main = () => {
@@ -18,7 +19,15 @@ const Main = () => {
     const [timerOn, setTimerOn] = useState(false)
 
     useEffect(() => {
-        (inputDate > 0) && setTimerOn(true)
+        const inputAtLastSeanseDate = localStorage.getItem('input-date')
+        inputAtLastSeanseDate && setInputDate(inputAtLastSeanseDate)
+    }, [])
+
+    useEffect(() => {
+        if(inputDate > 0) {
+            localStorage.setItem('input-date', inputDate)
+            setTimerOn(true)
+        }
     }, [inputDate])
 
     useInterval(() => {
@@ -47,6 +56,13 @@ const Main = () => {
         })
     }
 
+    const clearTimer = () => {
+        setInputDate(0)
+        setTimeLeft(INITIAL_STATE)
+        setTimerOn(false)
+    }
+
+
     return (
         <div className="main">
             <h1 className="main__title">Countdown Timer</h1>
@@ -74,6 +90,10 @@ const Main = () => {
                     <span>sec</span>
                 </div>
             </div>
+
+            <ClearTimer
+                clearTimer={clearTimer}
+            />
         </div>
     )
 }
