@@ -3,14 +3,14 @@ import './Header.scss';
 
 const Header = () => {
     return (
-        <div className="header">
+        <header className="header">
             <div className="header-logo">
                 LOGO
             </div>
             <div className="header-contacts">
                 MAIL
             </div>
-        </div>
+        </header>
     );
 }
 

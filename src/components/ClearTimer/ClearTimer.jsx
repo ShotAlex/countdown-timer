@@ -7,6 +7,7 @@ const ClearTimer = ({clearTimer}) => {
         <button
             className="clear-timer"
             onClick={clearTimer}
+            title="Stop timer"
         >
             <img src={stopImg} alt="Stop timer"/>
         </button>
