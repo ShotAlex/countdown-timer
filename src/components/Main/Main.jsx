@@ -60,6 +60,7 @@ const Main = () => {
         setInputDate(0)
         setTimeLeft(INITIAL_STATE)
         setTimerOn(false)
+        localStorage.setItem('input-date', 0)
     }
 
 
