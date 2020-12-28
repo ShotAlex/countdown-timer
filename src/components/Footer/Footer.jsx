@@ -4,12 +4,16 @@ import './Footer.scss'
 const Footer = () => {
     return (
         <footer className="footer">
-            <div className="footer-logo">
-                LOGO
-            </div>
-            <div className="footer-contacts">
-                MAIL
-            </div>
+            <span className='footer__created'>
+                Created by &nbsp;
+            </span>
+            <a
+                href='https://shotalex.github.io/'
+                target='_blank'
+                className='footer__author'
+            >
+                Shot Alex
+            </a>
         </footer>
     );
 }

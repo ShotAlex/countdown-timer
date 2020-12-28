@@ -1,7 +1,22 @@
 .footer {
-  background-color: #dfdfdf;
-  display: flex;
-  justify-content: space-between;
   padding: 20px;
   width: 100%;
+  text-align: center;
+  color: thistle;
+
+  &__created,
+  &__author {
+    font-size: 1rem;
+    margin: 0 auto;
+  }
+
+  &__author {
+    text-decoration: none;
+    color: lightgray;
+    transition: .45s;
+
+    &:hover {
+      color: black;
+    }
+  }
 }
