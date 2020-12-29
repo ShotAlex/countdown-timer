@@ -1,6 +1,8 @@
 # Countdown Timer
 
-- git clone https://github.com/ShotAlex/countdown-timer.git
+##### Demo: https://shotalex-countdown-timer.netlify.app
+
+- git clone 
 - cd countdown-timer
 - npm i
 - npm start
