@@ -2,6 +2,8 @@ import React, {useState,useEffect} from 'react'
 import {useInterval} from "../../hooks/useInterval";
 import EventName from '../EventName/EventName'
 import InputDate from '../InputDate/InputDate'
+import ClearTimer from "../ClearTimer/ClearTimer";
+import EndTime from "../EndTime/EndTime";
 import {
     DAY_MS,
     HOUR_MS,
@@ -10,13 +12,13 @@ import {
     INITIAL_STATE
 } from '../../variables/variables.js'
 import './Main.scss'
-import ClearTimer from "../ClearTimer/ClearTimer";
 
 
 const Main = () => {
     const [timeLeft, setTimeLeft] = useState(INITIAL_STATE)
     const [inputDate, setInputDate] = useState(0)
     const [timerOn, setTimerOn] = useState(false)
+    const [isEndTimePopupVisible, setIsEndTimePopupVisible] = useState(false)
 
     useEffect(() => {
         const inputAtLastSeanseDate = localStorage.getItem('input-date')
@@ -37,9 +39,12 @@ const Main = () => {
     const getDateDifference = () => {
         const dateNow = new Date();
         const currencyMilliseconds = inputDate - dateNow.getTime()
-        currencyMilliseconds > 0
-            ? convertMillisecondsToDayHoursMinSec(currencyMilliseconds)
-            : setTimerOn(false)
+        if(currencyMilliseconds > 0){
+            convertMillisecondsToDayHoursMinSec(currencyMilliseconds)
+        } else {
+            setTimerOn(false)
+            setIsEndTimePopupVisible(true)
+        }
     }
 
     const convertMillisecondsToDayHoursMinSec = (milliseconds) => {
@@ -63,39 +68,46 @@ const Main = () => {
         localStorage.setItem('input-date', 0)
     }
 
+    const closePopup = () => setIsEndTimePopupVisible(false)
 
     return (
-        <div className="main">
-            <h1 className="main__title">Countdown Timer</h1>
+        <>
+            <div className="main">
+                <h1 className="main__title">Countdown Timer</h1>
 
-            <EventName />
-            <InputDate
-                setInputDate={setInputDate}
-            />
+                <EventName />
+                <InputDate
+                    setInputDate={setInputDate}
+                />
 
-            <div className="main-countdown">
-                <div className="main-countdown__item">
-                    {timeLeft.days}
-                    <span>days</span>
+                <div className="main-countdown">
+                    <div className="main-countdown__item">
+                        {timeLeft.days}
+                        <span>days</span>
+                    </div>
+                    <div className="main-countdown__item">
+                        {timeLeft.hours}
+                        <span>hours</span>
+                    </div>
+                    <div className="main-countdown__item">
+                        {timeLeft.minutes}
+                        <span>min</span>
+                    </div>
+                    <div className="main-countdown__item">
+                        {timeLeft.seconds}
+                        <span>sec</span>
+                    </div>
                 </div>
-                <div className="main-countdown__item">
-                    {timeLeft.hours}
-                    <span>hours</span>
-                </div>
-                <div className="main-countdown__item">
-                    {timeLeft.minutes}
-                    <span>min</span>
-                </div>
-                <div className="main-countdown__item">
-                    {timeLeft.seconds}
-                    <span>sec</span>
-                </div>
+
+                <ClearTimer
+                    clearTimer={clearTimer}
+                />
             </div>
-
-            <ClearTimer
-                clearTimer={clearTimer}
+            <EndTime
+                visible={isEndTimePopupVisible}
+                setIsVisible={closePopup}
             />
-        </div>
+        </>
     )
 }
 

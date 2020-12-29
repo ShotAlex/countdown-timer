@@ -6,13 +6,18 @@ const InputDate = (props) => {
     const [minInputDate, setMinInputDate] = useState('')
 
     useEffect(() => {
-        const timeNow = new Date()
-        const year = timeNow.getFullYear()
-        const month = timeNow.getMonth() + 1
-        const day = timeNow.getDate()
+        const isDateSet = localStorage.getItem('datetime-local')
+        if (isDateSet) {
+            setInputDate(isDateSet)
+        } else {
+            const timeNow = new Date()
+            const year = timeNow.getFullYear()
+            const month = timeNow.getMonth() + 1
+            const day = timeNow.getDate()
 
-        setInputDate(`${year}-${month}-${day}T00:00`)
-        setMinInputDate(getMinInputDate())
+            setInputDate(`${year}-${month}-${day}T00:00`)
+            setMinInputDate(getMinInputDate())
+        }
     }, [])
 
     const getMinInputDate = () => new Date().toISOString().toString().slice(0,16)
@@ -26,6 +31,7 @@ const InputDate = (props) => {
         if (checkInputTime(inputUserDateInMilliseconds)) {
             setInputDate(inputUserDate)
             props.setInputDate(inputUserDateInMilliseconds)
+            localStorage.setItem('datetime-local', inputUserDate)
         } else {
             alert('Sorry, You can\'t travel back in time yet')
         }
