@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import {useInterval} from "../../hooks/useInterval";
 import EventName from '../EventName/EventName'
 import InputDate from '../InputDate/InputDate'
@@ -21,8 +21,8 @@ const Main = () => {
     const [isEndTimePopupVisible, setIsEndTimePopupVisible] = useState(false)
 
     useEffect(() => {
-        const inputAtLastSeanseDate = localStorage.getItem('input-date')
-        inputAtLastSeanseDate && setInputDate(inputAtLastSeanseDate)
+        const inputLastSeanceDate = localStorage.getItem('input-date')
+        if (inputLastSeanceDate) setInputDate(inputLastSeanceDate)
     }, [])
 
     useEffect(() => {
@@ -33,7 +33,7 @@ const Main = () => {
     }, [inputDate])
 
     useInterval(() => {
-        (inputDate > 0) && getDateDifference()
+        if (inputDate > 0) getDateDifference()
     }, timerOn ? 1000 : null);
 
     const getDateDifference = () => {
