@@ -10,6 +10,7 @@ const Footer = () => {
             <a
                 href='https://shotalex.github.io/'
                 target='_blank'
+                rel="noreferrer"
                 className='footer__author'
             >
                 Shot Alex
