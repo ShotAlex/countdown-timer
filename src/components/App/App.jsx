@@ -1,6 +1,6 @@
-import Main from '../Main/Main'
-import Footer from '../Footer/Footer'
-import './App.scss'
+import Main from '../Main/Main';
+import Footer from '../Footer/Footer';
+import './App.scss';
 
 const App = () => {
   return (
@@ -9,6 +9,6 @@ const App = () => {
       <Footer />
     </div>
   );
-}
+};
 
 export default App;
