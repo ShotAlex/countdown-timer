@@ -1,9 +1,9 @@
-import React from 'react'
-import './Footer.scss'
+import React from 'react';
+import './Footer.scss';
 
 const Footer = () => {
     return (
-        <footer className="footer">
+        <footer className='footer'>
             <span className='footer__created'>
                 Created by &nbsp;
             </span>
@@ -17,6 +17,6 @@ const Footer = () => {
             </a>
         </footer>
     );
-}
+};
 
 export default Footer;

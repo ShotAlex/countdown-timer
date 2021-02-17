@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export const useInterval = (callback, delay) => {
     const savedCallback = React.useRef();
@@ -11,7 +11,8 @@ export const useInterval = (callback, delay) => {
         function tick() {
             savedCallback.current();
         }
-        if (delay !== null) {
+
+        if (delay) {
             let id = setInterval(tick, delay);
             return () => clearInterval(id);
         }

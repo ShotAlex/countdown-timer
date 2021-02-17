@@ -7,6 +7,6 @@ export const INITIAL_STATE = {
     days: '--',
     hours: '--',
     minutes: '--',
-    seconds: '--'
-}
+    seconds: '--',
+};
 
