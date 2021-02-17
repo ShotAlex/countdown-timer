@@ -15,32 +15,32 @@ module.exports = {
     },
   },
   rules: {
-    'linebreak-style': 'off', // Неправильно работает в Windows.
+    'linebreak-style': 'off', // Does not work correctly in Windows.
 
-    'arrow-parens': 'off', // Несовместимо с prettier
-    'object-curly-newline': 'off', // Несовместимо с prettier
-    'no-mixed-operators': 'off', // Несовместимо с prettier
-    'arrow-body-style': 'off', // Это - не наш стиль?
-    'function-paren-newline': 'off', // Несовместимо с prettier
+    'arrow-parens': 'off', // Not compatible with prettier
+    'object-curly-newline': 'off', // Not compatible with prettier
+    'no-mixed-operators': 'off', // Not compatible with prettier
+    'arrow-body-style': 'off',
+    'function-paren-newline': 'off', // Not compatible with prettier
     'no-plusplus': 'off',
-    'space-before-function-paren': 0, // Несовместимо с prettier
+    'space-before-function-paren': 0, // Not compatible with prettierr
 
-    'max-len': ['error', 100, 2, { ignoreUrls: true }], // airbnb позволяет некоторые пограничные случаи
-    'no-console': 'error', // airbnb использует предупреждение
-    'no-alert': 'error', // airbnb использует предупреждение
+    'max-len': ['error', 100, 2, { ignoreUrls: true }], // airbnb allows some borderline cases
+    'no-console': 'error', // airbnb uses a warning
+    'no-alert': 'error', // airbnb uses a warning
 
-    'no-param-reassign': 'off', // Это - не наш стиль?
-    radix: 'off', // parseInt, parseFloat и radix выключены. Мне это не нравится.
+    'no-param-reassign': 'off',
+    radix: 'off', // parseInt, parseFloat, and radix are disabled. I don't like it.
 
-    'react/require-default-props': 'off', // airbnb использует уведомление об ошибке
-    'react/forbid-prop-types': 'off', // airbnb использует уведомление об ошибке
-    'react/jsx-filename-extension': ['error', { extensions: ['.js'] }], // airbnb использует .jsx
+    'react/require-default-props': 'off', // airbnb uses error notification
+    'react/forbid-prop-types': 'off', // airbnb uses error notification
+    'react/jsx-filename-extension': ['error', { extensions: ['.js'] }], // airbnb used .jsx
 
     'prefer-destructuring': 'off',
 
-    'react/no-find-dom-node': 'off', // Я этого не знаю
+    'react/no-find-dom-node': 'off',
     'react/no-did-mount-set-state': 'off',
-    'react/no-unused-prop-types': 'off', // Это всё ещё работает нестабильно
+    'react/no-unused-prop-types': 'off',
     'react/jsx-one-expression-per-line': 'off',
 
     'jsx-a11y/anchor-is-valid': ['error', { components: ['Link'], specialLink: ['to'] }],
@@ -51,7 +51,7 @@ module.exports = {
           every: ['id'],
         },
       },
-    ], // для ошибки вложенных свойств htmlFor элементов label
+    ], // for the error of nested htmlFor properties of label elements
 
     'prettier/prettier': ['error'],
   },

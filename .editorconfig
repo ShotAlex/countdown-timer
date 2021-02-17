@@ -1,6 +1,4 @@
-# EditorConfig - это замечательно: http://EditorConfig.org
-
-# Файл EditorConfig верхнего уровня
+# EditorConfig top-level file
 root = true
 
 [*.md]
@@ -9,7 +7,7 @@ trim_trailing_whitespace = false
 [*.js]
 trim_trailing_whitespace = true
 
-# Переводы строк в стиле Unix с пустой строкой в конце файла
+# Unix-style line feeds with an empty line at the end of the file
 [*]
 indent_style = space
 indent_size = 2
